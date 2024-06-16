@@ -34,4 +34,35 @@ class Player(db.Model):
     year = db.Column(db.String(7), nullable=False)
 
     def __repr__(self):
-        return "{self.name}"
+        return "{self.name}" 
+    
+
+class Team(db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    name = db.Column(db.String(20), nullable=False)
+    conference = db.Column(db.String(5), nullable=False)
+    division = db.Column(db.String(20), nullable=False)
+    gp = db.Column(db.Float, nullable=False)
+    ppg = db.Column(db.Float, nullable=False)
+    oppg = db.Column(db.Float, nullable=False)
+    pdiff = db.Column(db.Float, nullable=False)
+    pace = db.Column(db.Float, nullable=False)
+    oeff = db.Column(db.Float, nullable=False)
+    deff = db.Column(db.Float, nullable=False)
+    ediff = db.Column(db.Float, nullable=False)
+    sos = db.Column(db.Float, nullable=False)
+    rsos = db.Column(db.Float, nullable=False)
+    sar = db.Column(db.Float, nullable=False)
+    cons = db.Column(db.Float, nullable=False)
+    a4f = db.Column(db.Float, nullable=False)
+    win = db.Column(db.Integer, nullable=False)
+    loss = db.Column(db.Integer, nullable=False)
+    win_percent = db.Column(db.Float, nullable=False)
+    ewin_percent = db.Column(db.Float, nullable=False)
+    pwin_percent = db.Column(db.Float, nullable=False)
+    ach = db.Column(db.Float, nullable=False)
+    streak = db.Column(db.Integer, nullable=False)
+    year = db.Column(db.String(6), nullable=False)
+
+    def __repr__(self):
+        return "{self.name}({self.year})"
