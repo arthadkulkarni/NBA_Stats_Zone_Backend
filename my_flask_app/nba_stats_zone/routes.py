@@ -18,9 +18,15 @@ def display_team_stats(year, id):
     team = Team.query.filter_by(year=year, id=id).first_or_404()
     return {'team': team.format_team()}
 
-#route returns the names and basic information of each player
+# route returns the names and basic information of each player
 @app.route('/players/<year>')
 def get_players(year):
     players = Player.query.filter_by(year=year).all()
     player_list = [player.format_rep_player() for player in players]
     return {'players': player_list}
+
+# route returns the advanced stats for a certain player
+@app.route('/players/<year>/<int:id>')
+def display_player_stats(year, id):
+    player = Player.query.filter_by(year=year, id=id).first_or_404()
+    return {'player': player.format_player()}
