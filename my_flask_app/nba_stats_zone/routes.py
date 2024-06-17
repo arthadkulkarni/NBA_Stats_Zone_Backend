@@ -5,7 +5,7 @@ from nba_stats_zone import app
 def Welcome():
     return 'Welcome to NBA Stats Zone!'
 
-#rout returns the names and years of each team
+#route returns the names and years of each team
 @app.route('/teams/<year>')
 def get_teams(year):
     teams = Team.query.filter_by(year=year).all()
@@ -17,5 +17,10 @@ def get_teams(year):
 def display_team_stats(year, id):
     team = Team.query.filter_by(year=year, id=id).first_or_404()
     return {'team': team.format_team()}
-    
 
+#route returns the names and basic information of each player
+@app.route('/players/<year>')
+def get_players(year):
+    players = Player.query.filter_by(year=year).all()
+    player_list = [player.format_rep_player() for player in players]
+    return {'players': player_list}
