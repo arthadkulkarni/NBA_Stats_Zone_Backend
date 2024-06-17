@@ -8,4 +8,6 @@ def Welcome():
 
 @app.route('/team/<year>', methods = ['GET'])
 def get_teams(year):
-    teams = Team.query.filter_by(year=year)
+    teams = Team.query.order_by(Team.id.asc()).filter_by(year=year)
+    teams_list = [Team.format_team() for team in teams]
+    return {'teams': teams_list}
