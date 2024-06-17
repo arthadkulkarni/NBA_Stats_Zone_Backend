@@ -74,6 +74,7 @@ class Player(db.Model):
     
     def format_rep_player(self):
         return{
+            'id': self.id,
             'name': self.name,
             'team': self.team,
             'age': self.age
@@ -143,6 +144,7 @@ class Team(db.Model):
     
     def format_rep_team(self):
         return{
+            'id': self.id,
             'team': self.team,
             'year': self.year,
             'conference': self.conf
