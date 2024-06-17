@@ -6,8 +6,9 @@ from nba_stats_zone import app
 def Welcome():
     return 'Welcome to NBA Stats Zone!'
 
-@app.route('/team/<year>', methods = ['GET'])
+@app.route('/teams/<year>')
 def get_teams(year):
-    teams = Team.query.order_by(Team.id.asc()).filter_by(year=year)
-    teams_list = [Team.format_team() for team in teams]
+    teams = Team.query.filter_by(year=year)
+    teams_list = [team.format_rep_team() for team in teams]
     return {'teams': teams_list}
+

@@ -6,14 +6,14 @@ class Player(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(50), nullable=False)
     team = db.Column(db.String(10), nullable=False)
-    position = db.Column(db.String(10), nullable=False)
+    pos = db.Column(db.String(10), nullable=False)
     age = db.Column(db.Integer, nullable=False)
-    games_played = db.Column(db.Integer, nullable=False)
-    minutes_per_game = db.Column(db.Float, nullable=False)
-    usg_percent = db.Column(db.Float, nullable=False)
-    to_percent = db.Column(db.Float)
+    gp = db.Column(db.Integer, nullable=False)
+    mpg = db.Column(db.Float, nullable=False)
+    usg_per = db.Column(db.Float, nullable=False)
+    to_per = db.Column(db.Float)
     fta = db.Column(db.Float)
-    ft_percent = db.Column(db.Float, nullable=False)
+    ft_per = db.Column(db.Float, nullable=False)
     two_pa = db.Column(db.Float, nullable=False)
     twop_percent = db.Column(db.Float, nullable=False)
     three_pa = db.Column(db.Float, nullable=False)
@@ -35,7 +35,7 @@ class Player(db.Model):
     year = db.Column(db.String(7), nullable=False)
 
     def __repr__(self):
-        return "{self.name}" 
+        return f"{self.name}" 
     
     # return in json form
     def format_player(self):
@@ -43,14 +43,14 @@ class Player(db.Model):
             'id': self.id,
             'name': self.name,
             'team': self.team,
-            'position': self.position,
+            'pos': self.pos,
             'age': self.age,
-            'games_played': self.games_played,
-            'minutes_per_game': self.minutes_per_game,
-            'usg_percent': self.usg_percent,
-            'to_percent': self.to_percent,
+            'gp': self.gp,
+            'mpg': self.mpg,
+            'usg_per': self.usg_per,
+            'to_per': self.to_per,
             'fta': self.fta,
-            'ft_percent': self.ft_percent,
+            'ft_per': self.ft_per,
             'two_pa': self.two_pa,
             'twop_percent': self.twop_percent,
             'three_pa': self.three_pa,
@@ -72,12 +72,19 @@ class Player(db.Model):
             'year': self.year
         }
     
+    def format_rep_player(self):
+        return{
+            'name': self.name,
+            'team': self.team,
+            'age': self.age
+        }
+
 #set team object, information, and stats
 class Team(db.Model):
     __tablename__ = 'team'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    name = db.Column(db.String(20), nullable=False)
-    conference = db.Column(db.String(5), nullable=False)
+    team = db.Column(db.String(20), nullable=False)
+    conf = db.Column(db.String(5), nullable=False)
     division = db.Column(db.String(20), nullable=False)
     gp = db.Column(db.Float, nullable=False)
     ppg = db.Column(db.Float, nullable=False)
@@ -92,24 +99,24 @@ class Team(db.Model):
     sar = db.Column(db.Float, nullable=False)
     cons = db.Column(db.Float, nullable=False)
     a4f = db.Column(db.Float, nullable=False)
-    win = db.Column(db.Integer, nullable=False)
-    loss = db.Column(db.Integer, nullable=False)
+    w = db.Column(db.Integer, nullable=False)
+    l = db.Column(db.Integer, nullable=False)
     win_percent = db.Column(db.Float, nullable=False)
     ewin_percent = db.Column(db.Float, nullable=False)
     pwin_percent = db.Column(db.Float, nullable=False)
     ach = db.Column(db.Float, nullable=False)
-    streak = db.Column(db.Integer, nullable=False)
+    strk = db.Column(db.Integer, nullable=False)
     year = db.Column(db.String(6), nullable=False)
 
     def __repr__(self):
-        return "{self.name}({self.year})"
+        return f"{self.team}({self.year})"
     
     # return in json form
     def format_team(self):
         return{
             'id': self.id,
-            'name': self.id,
-            'conference': self.conference,
+            'team': self.team,
+            'conf': self.conf,
             'division': self.division,
             'gp': self.gp,
             'ppg': self.ppg,
@@ -124,12 +131,19 @@ class Team(db.Model):
             'sar': self.sar,
             'cons': self.cons,
             'a4f': self.a4f,
-            'win': self.win,
-            'loss': self.loss,
+            'w': self.w,
+            'l': self.l,
             'win_percent': self.win_percent,
             'ewin_percent': self.ewin_percent,
             'pwin_percent': self.pwin_percent,
             'ach': self.ach,
-            'streak': self.streak,
+            'streak': self.strk,
             'year': self.year
+        }
+    
+    def format_rep_team(self):
+        return{
+            'team': self.team,
+            'year': self.year,
+            'conference': self.conf
         }
