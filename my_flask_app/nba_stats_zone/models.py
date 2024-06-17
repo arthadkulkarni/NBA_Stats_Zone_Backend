@@ -2,6 +2,7 @@ from nba_stats_zone import db
 
 # set player object, information, and stats
 class Player(db.Model):
+    __tablename__ = 'player'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(50), nullable=False)
     team = db.Column(db.String(10), nullable=False)
@@ -36,8 +37,44 @@ class Player(db.Model):
     def __repr__(self):
         return "{self.name}" 
     
-
+    # return in json form
+    def format_player(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'team': self.team,
+            'position': self.position,
+            'age': self.age,
+            'games_played': self.games_played,
+            'minutes_per_game': self.minutes_per_game,
+            'usg_percent': self.usg_percent,
+            'to_percent': self.to_percent,
+            'fta': self.fta,
+            'ft_percent': self.ft_percent,
+            'two_pa': self.two_pa,
+            'twop_percent': self.twop_percent,
+            'three_pa': self.three_pa,
+            'threep_percent': self.threep_percent,
+            'efg_percent': self.efg_percent,
+            'ts_percent': self.ts_percent,
+            'ppg': self.ppg,
+            'rpg': self.rpg,
+            'apg': self.apg,
+            'spg': self.spg,
+            'bpg': self.bpg,
+            'tpg': self.tpg,
+            'points_rebounds': self.points_rebounds,
+            'points_assists': self.points_assists,
+            'points_assists_rebounds': self.points_assists_rebounds,
+            'vi': self.vi,
+            'ortg': self.ortg,
+            'drtg': self.drtg,
+            'year': self.year
+        }
+    
+#set team object, information, and stats
 class Team(db.Model):
+    __tablename__ = 'team'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(20), nullable=False)
     conference = db.Column(db.String(5), nullable=False)
@@ -66,3 +103,33 @@ class Team(db.Model):
 
     def __repr__(self):
         return "{self.name}({self.year})"
+    
+    # return in json form
+    def format_team(self):
+        return{
+            'id': self.id,
+            'name': self.id,
+            'conference': self.conference,
+            'division': self.division,
+            'gp': self.gp,
+            'ppg': self.ppg,
+            'oppg': self.oppg,
+            'pdiff': self.pdiff,
+            'pace': self.pace,
+            'oeff': self.oeff,
+            'deff': self.deff,
+            'ediff': self.ediff,
+            'sos': self.sos,
+            'rsos': self.rsos,
+            'sar': self.sar,
+            'cons': self.cons,
+            'a4f': self.a4f,
+            'win': self.win,
+            'loss': self.loss,
+            'win_percent': self.win_percent,
+            'ewin_percent': self.ewin_percent,
+            'pwin_percent': self.pwin_percent,
+            'ach': self.ach,
+            'streak': self.streak,
+            'year': self.year
+        }
