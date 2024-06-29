@@ -77,7 +77,8 @@ class Player(db.Model):
             'id': self.id,
             'name': self.name,
             'team': self.team,
-            'age': self.age
+            'age': self.age,
+            'year': self.year
         }
 
 #set team object, information, and stats
@@ -147,5 +148,6 @@ class Team(db.Model):
             'id': self.id,
             'team': self.team,
             'year': self.year,
-            'conference': self.conf
+            'conference': self.conf,
+            'division': self.division
         }
