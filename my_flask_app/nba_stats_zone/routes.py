@@ -13,9 +13,9 @@ def get_teams():
     return {'teams': teams_list}
 
 # route returns the advanced stats for a certain team
-@app.route('/team-stats/<year>/<int:id>')
-def display_team_stats(year, id):
-    team = Team.query.filter_by(year=year, id=id).first_or_404()
+@app.route('/team-stats/<int:id>')
+def display_team_stats(id):
+    team = Team.query.filter_by(id=id).first_or_404()
     return {'team': team.format_team()}
 
 # route returns the names and basic information of each player
@@ -26,7 +26,7 @@ def get_players():
     return {'players': player_list}
 
 # route returns the advanced stats for a certain player
-@app.route('/player-stats/<year>/<int:id>')
-def display_player_stats(year, id):
-    player = Player.query.filter_by(year=year, id=id).first_or_404()
+@app.route('/player-stats/<int:id>')
+def display_player_stats(id):
+    player = Player.query.filter_by(id=id).first_or_404()
     return {'player': player.format_player()}
