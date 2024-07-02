@@ -8,10 +8,9 @@ def Welcome():
 #route returns the names and years of each team
 @app.route('/team-stats')
 def get_teams():
-    teams = Team.query.filter_by().all()
+    teams = Team.query.filter().all()
     teams_list = [team.format_rep_team() for team in teams]
-    return {'players': teams_list}
-
+    return {'teams': teams_list}
 
 # route returns the advanced stats for a certain team
 @app.route('/team-stats/<year>/<int:id>')
@@ -22,7 +21,7 @@ def display_team_stats(year, id):
 # route returns the names and basic information of each player
 @app.route('/player-stats')
 def get_players():
-    players = Player.query.filter_by().all()
+    players = Player.query.all()
     player_list = [player.format_rep_player() for player in players]
     return {'players': player_list}
 

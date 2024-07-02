@@ -3,7 +3,7 @@ from nba_stats_zone import db
 # set player object, information, and stats
 class Player(db.Model):
     __tablename__ = 'player'
-    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50), nullable=False)
     team = db.Column(db.String(10), nullable=False)
     pos = db.Column(db.String(10), nullable=False)
