@@ -5,6 +5,6 @@ services:
       PYTHONUNBUFFERED: "1"
     commands:
       - pip install -r requirements.txt
-      - python app.py
+      - python run.py
     ports:
       - 8080:8080
